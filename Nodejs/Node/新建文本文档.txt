@@ -1,0 +1,51 @@
+npm  install -g express
+npm install  -g express-generator
+npm install   supervisor -g
+
+创建项目
+express -e  blog && cd blog
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+替换ejs
+app.set( 'view engine', 'htm');
+app.engine( '.htm', require( 'ejs').__express );
+
+
+数据库安装
+
+npm install express-session   
+npm install connect-mongo
+npm install mongoose
+
+去app.js 加载三个模块
+
+var mongoose=require('mongoose');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session); 
+
+app.user(session({
+	secret:"45454",
+	store:new MongoStore({
+		/*cookieSecret:DBsetting.cookieSecret,
+		db:DBsetting.db,
+		host:DBsetting.host*/
+		cookieSecret:'aa',
+		db:'aaa',
+		host:'aaaa'
+	});
+}));
+
+var app = express();  
+
+mongoose.connect('moogodb://localhost/blogOne');
+
+
+
+下载好 mongodb 配置数据库
+栗子：
+D:/mongodb/bin>mongod --dbpath D:\mongodb\data\db
+
+数据库 要放在 mongodb 里面建立才能生效
+
+ 
